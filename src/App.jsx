@@ -2,21 +2,28 @@ import { useState } from 'react';
 import StartPage from './pages/StartPage';
 import GamePage from './pages/GamePage';
 import ResultsPage from './pages/ResultsPage';
-import './styles/main.css'; // Підключаємо стилі
+import './styles/main.css';
 
 function App() {
-    // 'start', 'game', 'results' - це наші базові стани
     const [page, setPage] = useState('start');
+    //стан для зберігання обраної складності
+    const [difficulty, setDifficulty] = useState('easy');
+
+    const handleGameStart = (selectedDifficulty) => {
+        setDifficulty(selectedDifficulty);
+        setPage('game');
+    };
 
     const renderCurrentPage = () => {
         switch (page) {
             case 'game':
-                return <GamePage onGameEnd={() => setPage('results')} />;
+
+                return <GamePage difficulty={difficulty} onGameEnd={() => setPage('results')} />;
             case 'results':
                 return <ResultsPage onRestart={() => setPage('start')} />;
             case 'start':
             default:
-                return <StartPage onGameStart={() => setPage('game')} />;
+                return <StartPage onGameStart={handleGameStart} />;
         }
     };
 
