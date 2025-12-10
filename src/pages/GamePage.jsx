@@ -1,21 +1,37 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Board from '../components/Board/Board';
-// Імпорт кастомного хуку
-import { useSudoku } from '../hooks/useSudoku';
 
+
+import { useSudokuBoard } from '../hooks/useSudokuBoard';
+import { useSelection } from '../hooks/useSelection';
 
 const GamePage = ({ difficulty, onGameEnd }) => {
-    // Використання хуку, отримуючи з нього все необхідне
-    const { grid, selectedCell, createNewGame, handleCellSelect, handleNumberInput } = useSudoku();
+    // 2. Хук №1: Відповідає ТІЛЬКИ за сітку та правила гри
+    const {
+        grid,
+        initialGrid,
+        startNewGame,
+        updateCell
+    } = useSudokuBoard();
 
+    // 3. Хук №2: Відповідає ТІЛЬКИ за візуальне виділення клітинки
+    const {
+        selectedCell,
+        selectCell
+    } = useSelection();
 
     useEffect(() => {
-        createNewGame(difficulty);
-    }, [difficulty]); // Залежність
+        startNewGame(difficulty);
+    }, [difficulty, startNewGame]);
 
-    // Якщо поле ще не згенеровано, показуємо завантаження
-    if (!grid) {
+    const handleNumberInput = (number) => {
+        if (selectedCell) {
+            updateCell(selectedCell.row, selectedCell.col, number);
+        }
+    };
+
+    if (!grid || !initialGrid) {
         return <div>Генерація поля...</div>;
     }
 
@@ -24,14 +40,22 @@ const GamePage = ({ difficulty, onGameEnd }) => {
             <h2>Складність: {difficulty}</h2>
             <Board
                 grid={grid}
+                initialGrid={initialGrid}
                 selectedCell={selectedCell}
-                onCellSelect={handleCellSelect}
+                onCellSelect={selectCell}
             />
 
-            <div>
-                <p>Панель для вводу чисел (у майбутньому)</p>
+            <div style={{ marginTop: '20px', display: 'flex', gap: '5px' }}>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
+                    <button key={num} onClick={() => handleNumberInput(num)}>
+                        {num}
+                    </button>
+                ))}
             </div>
-            <button onClick={onGameEnd}>Завершити гру</button>
+
+            <button style={{ marginTop: '20px' }} onClick={onGameEnd}>
+                Завершити гру
+            </button>
         </div>
     );
 };
