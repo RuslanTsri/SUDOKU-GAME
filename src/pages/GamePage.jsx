@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Board from '../components/Board/Board';
+import Board from '../components/Game/Board/Board';
 
 
 import { useSudokuBoard } from '../hooks/useSudokuBoard';

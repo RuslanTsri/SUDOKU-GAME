@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Board.module.css';
-import Cell from '../Cell/Cell';
+import Cell from '../Cell/Cell.jsx';
 
 const Board = ({ grid, selectedCell, onCellSelect }) => {
     return (
