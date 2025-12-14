@@ -12,11 +12,11 @@
 }
 
 body {
-    background-color: #0d0d0d; /* Дуже темний фон */
-    color: #00ff41; /* Яскраво-зелений текст */
-    font-family: 'Courier New', Courier, monospace; /* Класичний "друкарський" шрифт */
-    text-shadow: 0 0 5px #00ff41; /* Ефект світіння для тексту */
-    margin: 0; /* Важливо скинути відступи за замовчуванням */
+    background-color: #0d0d0d;
+    color: #00ff41;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 0 0 5px #00ff41;
+    margin: 0;
 
     /* ВЛАСТИВОСТІ ДЛЯ ЦЕНТРУВАННЯ*/
     display: flex;
@@ -33,11 +33,33 @@ body {
     animation: fadeIn 0.8s ease-in-out;
 }
 
-h1, h2 {
-    text-transform: uppercase; /* Великі літери для заголовків */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 20px;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 
+h1, h2, h3 {
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+}
 
 
 

@@ -1,17 +1,44 @@
 
 .cell {
-    border: 1px solid rgba(0, 255, 65, 0.3);
+    width: 50px;
+    height: 50px;
+    border: 1px solid #444;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 24px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    background-color: #000000;
+    user-select: none;
+    transition: background-color 0.2s, border-color 0.2s;
+    color: #00ff00;
+    font-family: monospace;
 }
-.cell:hover {
-    background-color: rgba(0, 255, 65, 0.1);
-}
+
+
 .selected {
-    background-color: rgba(0, 255, 65, 0.3);
-    box-shadow: 0 0 10px #00ff41;
+    background-color: #222;
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+
+.initial {
+    background-color: #2c2c2c;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: default;
+}
+
+/* Помилка */
+.error {
+    background-color: #4a0000 !important;
+    color: #ff5555;
+    border-color: #ff0000;
+}
+
+
+.cell:not(.initial):hover {
+    background-color: #111;
+    border-color: #ffffff;
 }
