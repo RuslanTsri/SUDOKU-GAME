@@ -2,14 +2,11 @@ import { useState, useCallback } from 'react';
 import { generateSudoku } from '../utils/sudoku';
 
 export const useSudokuBoard = () => {
-    // Стан для поточної сітки
     const [grid, setGrid] = useState(null);
-    // Стан для початкової сітки
     const [initialGrid, setInitialGrid] = useState(null);
-    // Стан для перевірки, чи гра завершена
     const [isSolved, setIsSolved] = useState(false);
 
-    // 1. Початок нової гри
+
     const startNewGame = useCallback((difficulty) => {
         const newSudoku = generateSudoku(difficulty);
         setGrid(newSudoku.puzzle);

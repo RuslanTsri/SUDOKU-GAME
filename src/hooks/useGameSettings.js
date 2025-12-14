@@ -4,7 +4,6 @@ const SETTINGS_KEY = 'sudokuSettings';
 
 export const useGameSettings = () => {
     const [settings, setSettings] = useState(() => {
-
         try {
             const savedSettings = localStorage.getItem(SETTINGS_KEY);
             return savedSettings ? JSON.parse(savedSettings) : { difficulty: 'easy', playerName: 'Гравець 1' };
@@ -14,7 +13,6 @@ export const useGameSettings = () => {
         }
     });
 
-
     useEffect(() => {
         try {
             localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
@@ -23,5 +21,8 @@ export const useGameSettings = () => {
         }
     }, [settings]);
 
-    return [settings, setSettings];
+    return {
+        settings,
+        updateSettings: setSettings
+    };
 };
