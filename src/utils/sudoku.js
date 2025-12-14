@@ -13,10 +13,8 @@ export const generateSudoku = (difficulty) => {
         [3, 4, 5, 2, 8, 6, 1, 7, 9],
     ];
 
-    // Копіюємо вирішене поле, щоб створити "загадку"
     let puzzle = solution.map(row => [...row]);
 
-    // Кількість клітинок, які треба "стерти", залежно від складності
     const holes = {
         easy: 20,
         medium: 40,

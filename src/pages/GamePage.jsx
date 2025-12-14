@@ -3,10 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Board from '../components/Game/Board/Board';
 import { useSudokuBoard } from '../hooks/useSudokuBoard';
 import { useSelection } from '../hooks/useSelection';
+import { useResultsStore } from '../store/useResultsStore';
 
 const GamePage = () => {
     const { difficulty, playerName } = useParams();
     const navigate = useNavigate();
+    const addResult = useResultsStore((state) => state.addResult);
 
     const {
         grid,
@@ -35,6 +37,12 @@ const GamePage = () => {
     };
 
     const handleFinishGame = () => {
+        addResult({
+            name: playerName || 'Гість',
+            difficulty: difficulty,
+            status: 'Win'
+        });
+
         navigate('/results');
     };
 
@@ -64,7 +72,6 @@ const GamePage = () => {
                 ))}
             </div>
 
-            {/* ✅ Використовуємо handleFinishGame і navigate */}
             <button style={{ marginTop: '20px' }} onClick={handleFinishGame}>
                 Завершити гру
             </button>
@@ -72,5 +79,4 @@ const GamePage = () => {
     );
 };
 
-// PropTypes більше не потрібні, бо ми не передаємо props у <GamePage />
 export default GamePage;
